@@ -1,0 +1,29 @@
+1. lépés npm install -D tailwindcss@3
+2. lépés npx tailwindcss init
+
+3. lépés tailwind.config.ts:
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+4. lépés index.css-be:
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+5. lépés 
+próba:
+
+npm run start
+
+<h1 className="text-3xl font-bold underline">
+      Hello world!
+</h1>
