@@ -28,9 +28,11 @@ class KategoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kategoria $kategoria)
+    public function show($id)
     {
-        //
+        return Kategoria::leftJoin('recepteks', 'recepteks.kat_id', '=', 'kategorias.id')
+            ->where('recepteks.kat_id', '=', $id)
+            ->get();
     }
 
     /**

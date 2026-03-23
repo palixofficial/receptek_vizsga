@@ -50,10 +50,10 @@ class ReceptekController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Receptek $receptek)
+    public function destroy($id)
     {
 
-        Receptek::find($receptek)->delete();
+        Receptek::find($id)->delete();
         return response()->json(null, 200);
     }
 }
