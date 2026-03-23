@@ -93,7 +93,22 @@ $table->foreignId('user_id')->constrained('users');
 
 ## Controller metódusok
 
+return Receptek::leftJoin('kategorias', 'recepteks.kat_id', '=', 'kategorias.id')
+->select('recepteks.\*', 'kategorias.nev as kategoria_nev')
+->get();
+
 ```php
+
+// Index kapcsolattal
+ public function index()
+    {
+        return Receptek::leftJoin('kategorias', 'recepteks.kat_id', '=', 'kategorias.id')
+            ->select('recepteks.*', 'kategorias.nev as kategoria_nev')
+            ->get();
+        // return Receptek::with("kategorias")->(); EZ CSAK SHOW ESETÉN!
+    }
+
+
 // Egy rekord lekérése
 public function show(string $id)
 {
