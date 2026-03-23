@@ -14,7 +14,10 @@ class ReceptekController extends Controller
      */
     public function index()
     {
-        //
+        return Receptek::leftJoin('kategorias', 'recepteks.kat_id', '=', 'kategorias.id')
+            ->select('recepteks.*', 'kategorias.nev as kategoria_nev')
+            ->get();
+        // return Receptek::with("kategorias")->(); EZ CSAK SHOW ESETÉN!
     }
 
     /**
@@ -22,7 +25,10 @@ class ReceptekController extends Controller
      */
     public function store(StoreReceptekRequest $request)
     {
-        //
+        $recept = new Receptek();
+        $recept->fill($request->all());
+        $recept->save();
+        return response()->json($recept, 201);
     }
 
     /**
@@ -46,6 +52,8 @@ class ReceptekController extends Controller
      */
     public function destroy(Receptek $receptek)
     {
-        //
+
+        Receptek::find($receptek)->delete();
+        return response()->json(null, 200);
     }
 }
